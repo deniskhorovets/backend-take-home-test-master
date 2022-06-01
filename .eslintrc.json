@@ -6,10 +6,14 @@
         "browser": true
     },
     "extends": "google",
+    "parserOptions": {
+        "ecmaVersion": 9
+    },
     "rules": {
         "comma-dangle": ["error", "never"],
         "object-curly-spacing": [2, "always"],
         "max-len": [1, 120],
-        "no-invalid-this": "off"
+        "no-invalid-this": "off",
+        "indent": ["error", 2]
     }
 }

@@ -2,14 +2,14 @@ const winston = require('winston');
 const { LOGGER_DATE_FORMAT, LOGGER_LOGS_PATH } = require('../../config');
 
 const winstonFormat = winston.format.printf(
-    ({ level, message, timestamp }) => `[${timestamp}] ${level.toUpperCase()}: ${message}`
+  ({ level, message, timestamp }) => `[${timestamp}] ${level.toUpperCase()}: ${message}`
 );
 
 const loggerWithTransport = winston.createLogger({
   format: winston.format.combine(
-      winston.format.timestamp({ format: LOGGER_DATE_FORMAT }),
-      winston.format.splat(),
-      winstonFormat
+    winston.format.timestamp({ format: LOGGER_DATE_FORMAT }),
+    winston.format.splat(),
+    winstonFormat
   ),
   transports: [
     new winston.transports.Console({
