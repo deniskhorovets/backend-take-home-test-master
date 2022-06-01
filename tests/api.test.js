@@ -2,10 +2,8 @@
 
 const request = require('supertest');
 const assert = require('assert');
-const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database(':memory:');
+const { db, initializeDB } = require('../src/db');
 const app = require('../src/app')(db);
-const buildSchemas = require('../src/schemas');
 const {
   ridesErrorMock,
   errorMessages,
@@ -13,17 +11,12 @@ const {
   rideRequestBodyMock
 } = require('./mocks');
 
+
 describe('API tests', () => {
   before((done) => {
-    db.serialize((err) => {
-      if (err) {
-        return done(err);
-      }
-
-      buildSchemas(db);
-
-      done();
-    });
+    initializeDB(db)
+      .then(() => done())
+      .catch((e) => done(e));
   });
 
   describe('GET /health', () => {

@@ -1,17 +1,12 @@
 'use strict';
 
 const logger = require('./src/utils/logger');
-const port = 8010;
+const { db, initializeDB } = require('./src/db');
+const { APP_PORT } = require('./config');
 
-const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database(':memory:');
-
-const buildSchemas = require('./src/schemas');
-
-db.serialize(() => {
-  buildSchemas(db);
-
-  const app = require('./src/app')(db);
-
-  app.listen(port, () => logger.info(`App started and listening on port ${port}`));
-});
+initializeDB(db)
+  .then(() => {
+    const app = require('./src/app')(db);
+    app.listen(APP_PORT, () => logger.info(`App started and listening on port ${APP_PORT}`));
+  })
+  .catch((error) => logger.error('Failed to initialize app' + error));
