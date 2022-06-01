@@ -13,6 +13,9 @@
     "coverage": "nyc npm run test",
     "docs": "node ./docs/swagger/swagger-server.js"
   },
+  "pre-push": [
+    "coverage"
+  ],
   "keywords": [
     "Xendit"
   ],
@@ -29,6 +32,7 @@
   "devDependencies": {
     "eslint": "^4.19.1",
     "nyc": "15.1.0",
+    "pre-push": "0.1.1",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-import": "^2.26.0",
     "mocha": "^6.1.4",
