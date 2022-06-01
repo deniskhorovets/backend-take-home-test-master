@@ -2,6 +2,7 @@
 
 const express = require('express');
 const cors = require('cors');
+const logger = require('../src/utils/logger');
 
 const app = express();
 
@@ -30,30 +31,38 @@ module.exports = (db) => {
     }
 
     if (endLatitude < -90 || endLatitude > 90 || endLongitude < -180 || endLongitude > 180) {
+      const message = 'End latitude and longitude must be between -90 - 90 and -180 to 180 degrees respectively';
+      logger.error(message);
       return res.send({
         error_code: 'VALIDATION_ERROR',
-        message: 'End latitude and longitude must be between -90 - 90 and -180 to 180 degrees respectively'
+        message
       });
     }
 
     if (typeof riderName !== 'string' || riderName.length < 1) {
+      const message = 'Rider name must be a non empty string';
+      logger.error(message);
       return res.send({
         error_code: 'VALIDATION_ERROR',
-        message: 'Rider name must be a non empty string'
+        message
       });
     }
 
     if (typeof driverName !== 'string' || driverName.length < 1) {
+      const message = 'Rider name must be a non empty string';
+      logger.error(message);
       return res.send({
         error_code: 'VALIDATION_ERROR',
-        message: 'Rider name must be a non empty string'
+        message
       });
     }
 
     if (typeof driverVehicle !== 'string' || driverVehicle.length < 1) {
+      const message = 'Rider name must be a non empty string';
+      logger.error(message);
       return res.send({
         error_code: 'VALIDATION_ERROR',
-        message: 'Rider name must be a non empty string'
+        message
       });
     }
 
