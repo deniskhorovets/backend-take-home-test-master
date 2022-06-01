@@ -8,6 +8,8 @@
     "extends": "google",
     "rules": {
         "comma-dangle": ["error", "never"],
-        "object-curly-spacing": [2, "always"]
+        "object-curly-spacing": [2, "always"],
+        "max-len": [1, 120],
+        "no-invalid-this": "off"
     }
 }
