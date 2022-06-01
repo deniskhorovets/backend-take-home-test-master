@@ -4,6 +4,7 @@
   "description": "A coding assessment for Xendit backend interviews",
   "main": "index.js",
   "directories": {
+    "doc": "docs",
     "test": "tests"
   },
   "scripts": {
@@ -18,14 +19,25 @@
   "license": "UNLICENSED",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.16.4",
     "sqlite3": "^4.0.6",
     "swagger-ui-express": "^4.4.0",
-    "yamljs": "^0.3.0",
-    "cors": "^2.8.5"
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.26.0",
     "mocha": "^6.1.4",
     "supertest": "^4.0.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deniskhorovets/backend-take-home-test-master.git"
+  },
+  "bugs": {
+    "url": "https://github.com/deniskhorovets/backend-take-home-test-master/issues"
+  },
+  "homepage": "https://github.com/deniskhorovets/backend-take-home-test-master#readme"
 }

@@ -1,0 +1,13 @@
+{
+    "env": {
+        "node": true,
+        "es6": true,
+        "commonjs": true,
+        "browser": true
+    },
+    "extends": "google",
+    "rules": {
+        "comma-dangle": ["error", "never"],
+        "object-curly-spacing": [2, "always"]
+    }
+}
