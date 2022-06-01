@@ -1,0 +1,129 @@
+openapi: 3.0.0
+info:
+  title: Rides API
+  description: API for managing rides
+  version: 1.0.0
+servers:
+  - url: http://localhost:8010
+    description: Local server
+paths:
+  /health:
+    get:
+      summary: Basic health check.
+      responses:
+        '200':
+          description: OK
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Healthy
+  /rides:
+    get:
+      summary: Get all rides
+      responses:
+        '200':
+          description: A list of rides
+          content:
+            application/json:
+              schema:
+                anyOf:
+                 - $ref: '#/components/schemas/RidesArray'
+                 - $ref: '#/components/schemas/RideError'
+  /rides/{id}:
+    get:
+      summary: Get a specific ride by id
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the ride to get
+      responses:
+        '200':
+          description: A specific ride
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/RidesArray'
+                  - $ref: '#/components/schemas/RideError'
+    post:
+      summary: Create a new ride
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              anyOf:
+               - $ref: '#/components/schemas/RideRequestBody'
+               - $ref: '#/components/schemas/RideError'
+      responses:
+        '200':
+          description: Created
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/RidesArray'
+                  - $ref: '#/components/schemas/RideError'
+
+components:
+  schemas:
+    RideObject:
+      type: object
+      properties:
+        rideID:
+          type: number
+        startLat:
+          type: number
+        startLong:
+          type: number
+        endLat:
+          type: number
+        endLong:
+          type: number
+        riderName:
+          type: string
+        driverName:
+          type: string
+        driverVehicle:
+          type: string
+        created:
+          type: string
+      discriminator:
+        propertyName: rideID
+    RideRequestBody:
+      type: object
+      properties:
+        startLat:
+          type: number
+        startLong:
+          type: number
+        endLat:
+          type: number
+        endLong:
+          type: number
+        riderName:
+          type: string
+        driverName:
+          type: string
+        driverVehicle:
+          type: string
+      discriminator:
+        propertyName: rideID
+    RidesArray:
+      type: array
+      items:
+        $ref: '#/components/schemas/RideObject'
+    RideError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          example: SERVER_ERROR
+        message:
+          type: string
+          example: Unknown error
+
