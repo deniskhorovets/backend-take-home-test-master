@@ -1,4 +1,4 @@
-const ridesService = require('./rides');
+const ridesService = require('./ride');
 
 module.exports = {
   ridesService

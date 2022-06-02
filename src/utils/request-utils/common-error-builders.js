@@ -1,5 +1,5 @@
-const commonRequestErrorException = (code, message) => ({
-  error_code: code,
+const commonRequestError = (errorCode, message) => ({
+  error_code: errorCode,
   message
 });
 
@@ -10,6 +10,6 @@ const internalServerErrorException = () => ({
 });
 
 module.exports = {
-  commonRequestErrorException,
+  commonRequestError,
   internalServerErrorException
 };

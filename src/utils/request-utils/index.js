@@ -1,6 +1,8 @@
-const { commonRequestErrorException, internalServerErrorException } = require('./common-error-request-builder');
+const { commonRequestError, internalServerErrorException } = require('./common-error-builders');
+const { errorResponse } = require('./response-builders');
 
 module.exports = {
-  commonRequestErrorException,
-  internalServerErrorException
+  commonRequestError,
+  internalServerErrorException,
+  errorResponse
 };
