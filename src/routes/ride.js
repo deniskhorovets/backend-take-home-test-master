@@ -1,4 +1,4 @@
-const expressRouter = require('express').Router;
+const { Router: expressRouter } = require('express');
 const { RideController } = require('../controllers');
 const { RideService } = require('../services');
 const { logger } = require('../utils');
