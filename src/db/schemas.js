@@ -2,7 +2,7 @@
 
 module.exports = async (db) => {
   const createRideTableSchema = `
-        CREATE TABLE Rides
+        CREATE TABLE IF NOT EXISTS Rides
         (
         rideID INTEGER PRIMARY KEY AUTOINCREMENT,
         startLat DECIMAL NOT NULL,
