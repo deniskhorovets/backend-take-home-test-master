@@ -11,6 +11,7 @@
     "test": "mocha tests",
     "start": "node index.js",
     "coverage": "nyc npm run test",
+    "test:load": "artillery run ./tests/performance/tests.yml -o logs/artillery.report.json",
     "docs": "node ./docs/swagger/swagger-server.js"
   },
   "pre-push": [
@@ -22,6 +23,7 @@
   "author": "Bo",
   "license": "UNLICENSED",
   "dependencies": {
+    "artillery": "^2.0.0-17",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.16.4",

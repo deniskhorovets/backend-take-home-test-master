@@ -1,0 +1,28 @@
+config:
+  target: 'http://localhost:8010'
+  phases:
+    - duration: 30
+      arrivalRate: 100
+  ensure:
+    p99: 50
+before:
+  flow:
+    - loop:
+        - post:
+            url: "/rides"
+            json:
+              start_lat: 1
+              start_long: 2
+              end_lat: 3
+              end_long: 4
+              rider_name: jack
+              driver_name: sam
+              driver_vehicle: truck
+      count: 50
+scenarios:
+  - name: API performance testing
+    flow:
+      - get:
+          url: /rides
+      - get:
+          url: /rides/1
