@@ -27,15 +27,15 @@ const validateRideBody = (rideBody) => {
   }
 
   if (isNotStringOrEmptyValidator(rideBody.rider_name)) {
-    errors.push(emptyNameTemplate(rideBody.rider_name));
+    errors.push(emptyNameTemplate('rider_name'));
   }
 
   if (isNotStringOrEmptyValidator(rideBody.driver_name)) {
-    errors.push(emptyNameTemplate(rideBody.driver_name));
+    errors.push(emptyNameTemplate('driver_name'));
   }
 
   if (isNotStringOrEmptyValidator(rideBody.driver_vehicle)) {
-    errors.push(emptyNameTemplate(rideBody.driver_vehicle));
+    errors.push(emptyNameTemplate('driver_vehicle'));
   }
 
   return errors.length ? errors : null;
