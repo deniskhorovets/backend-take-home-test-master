@@ -12,9 +12,10 @@ class RideController {
   async findAll(_req, res) {
     try {
       const rides = await this.ridesService.findAll();
-      res.send(rides);
+      return res.send(rides);
     } catch (e) {
-      res.send(e);
+      res.status(500);
+      return res.send(e);
     }
   };
 
@@ -22,9 +23,10 @@ class RideController {
     const { id } = req.params;
     try {
       const ride = await this.ridesService.findById(id);
-      res.send(ride);
+      return res.send(ride);
     } catch (e) {
-      res.send(e);
+      res.status(500);
+      return res.send(e);
     }
   };
 
@@ -43,6 +45,7 @@ class RideController {
       const rideBodyErrors = validateRideBody(rideBody);
       if (rideBodyErrors) {
         // this.logger.error(rideBodyErrors);
+        res.status(500);
         return res.send(errorResponse(
           'VALIDATION_ERROR',
           rideBodyErrors
@@ -50,9 +53,10 @@ class RideController {
       }
 
       const ride = await this.ridesService.create(rideBody);
-      res.send(ride);
+      return res.send(ride);
     } catch (e) {
-      res.send(e);
+      res.status(500);
+      return res.send(e);
     }
   };
 }

@@ -11,7 +11,6 @@ const {
   rideRequestBodyMock
 } = require('./mocks');
 
-
 describe('API tests', () => {
   before((done) => {
     initializeDB(db)
@@ -34,9 +33,25 @@ describe('API tests', () => {
         errorMessages.RIDES_NOT_FOUND_ERROR,
         errorMessages.NO_RIDES_FOUND_MESSAGE
       );
-      request(app).get('/rides').expect('Content-Type', 'application/json; charset=utf-8').expect((res) => {
-        assert.deepEqual(res.body, errorObject);
-      }).expect(200, done);
+      request(app).get('/rides')
+        .expect('Content-Type', 'application/json; charset=utf-8')
+        .expect((res) => {
+          assert.deepEqual(res.body, errorObject);
+        })
+        .expect(500, done);
+    });
+    it('should return an error for ride by id', (done) => {
+      const errorObject = ridesErrorMock(
+        errorMessages.RIDES_NOT_FOUND_ERROR,
+        'Could not find a ride with id 1'
+      );
+      request(app).
+        get('/rides/1').
+        expect('Content-Type', 'application/json; charset=utf-8').
+        expect((res) => {
+          assert.deepEqual(res.body, errorObject);
+        }).
+        expect(500, done);
     });
   });
 
@@ -60,7 +75,7 @@ describe('API tests', () => {
 
       const errorObject = ridesErrorMock(
         errorMessages.VALIDATION_ERROR,
-        errorMessages.NO_RIDER_NAME_MESSAGE
+        [errorMessages.NO_RIDER_NAME_MESSAGE]
       );
 
       request(app)
@@ -69,7 +84,7 @@ describe('API tests', () => {
         .expect((res) => {
           assert.deepEqual(res.body, errorObject);
         })
-        .expect(200, done);
+        .expect(500, done);
     });
 
     it('should return a validation start latitude error', (done) => {
@@ -78,7 +93,7 @@ describe('API tests', () => {
 
       const errorObject = ridesErrorMock(
         errorMessages.VALIDATION_ERROR,
-        errorMessages.START_LATITUDE_ERROR
+        [errorMessages.START_LATITUDE_ERROR]
       );
 
       request(app)
@@ -87,7 +102,7 @@ describe('API tests', () => {
         .expect((res) => {
           assert.deepEqual(res.body, errorObject);
         })
-        .expect(200, done);
+        .expect(500, done);
     });
     it('should return a validation end latitude error', (done) => {
       const req = rideRequestBodyMock();
@@ -95,7 +110,7 @@ describe('API tests', () => {
 
       const errorObject = ridesErrorMock(
         errorMessages.VALIDATION_ERROR,
-        errorMessages.END_LATITUDE_ERROR
+        [errorMessages.END_LATITUDE_ERROR]
       );
 
       request(app)
@@ -104,7 +119,7 @@ describe('API tests', () => {
         .expect((res) => {
           assert.deepEqual(res.body, errorObject);
         })
-        .expect(200, done);
+        .expect(500, done);
     });
   });
 
