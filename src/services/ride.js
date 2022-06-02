@@ -19,7 +19,7 @@ class RideService {
   };
 
   async findById(id) {
-    const ride = await this.db.allAsync(`SELECT * FROM Rides WHERE rideID='${id}'`);
+    const ride = await this.db.allAsync(`SELECT * FROM Rides WHERE rideID=?`, id);
     if (ride.length === 0) {
       const errMessage = `Could not find a ride with id ${id}`;
       this.logger.error(errMessage);
