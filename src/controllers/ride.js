@@ -3,6 +3,9 @@ const { errorResponse, validateRideBody } = require('../utils');
 class RideController {
   constructor(RideService, logger=console.log) {
     this.ridesService = RideService;
+    this.findAll = this.findAll.bind(this);
+    this.findById = this.findById.bind(this);
+    this.create = this.create.bind(this);
     this.logger = logger;
   };
 
@@ -11,7 +14,7 @@ class RideController {
       const rides = await this.ridesService.findAll();
       res.send(rides);
     } catch (e) {
-      res.send('error');
+      res.send(e);
     }
   };
 
@@ -21,7 +24,7 @@ class RideController {
       const ride = await this.ridesService.findById(id);
       res.send(ride);
     } catch (e) {
-      res.send('error');
+      res.send(e);
     }
   };
 
@@ -49,7 +52,7 @@ class RideController {
       const ride = await this.ridesService.create(rideBody);
       res.send(ride);
     } catch (e) {
-      res.send('error');
+      res.send(e);
     }
   };
 }

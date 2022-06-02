@@ -1,5 +1,5 @@
-const ridesService = require('./ride');
+const RideService = require('./ride');
 
 module.exports = {
-  ridesService
+  RideService
 };
