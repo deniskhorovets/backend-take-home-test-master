@@ -2,7 +2,7 @@
 
 const express = require('express');
 const cors = require('cors');
-const logger = require('../src/utils/logger');
+const { logger } = require('../src/utils');
 
 const app = express();
 
@@ -22,6 +22,8 @@ module.exports = (db) => {
     const riderName = req.body.rider_name;
     const driverName = req.body.driver_name;
     const driverVehicle = req.body.driver_vehicle;
+
+    // TODO logic goes to controller
 
     if (startLatitude < -90 || startLatitude > 90 || startLongitude < -180 || startLongitude > 180) {
       return res.send({

@@ -14,6 +14,15 @@
         "object-curly-spacing": [2, "always"],
         "max-len": [1, 120],
         "no-invalid-this": "off",
-        "indent": ["error", 2]
+        "indent": ["error", 2],
+        "require-jsdoc": ["error", {
+            "require": {
+                "FunctionDeclaration": true,
+                "MethodDefinition": false,
+                "ClassDeclaration": false,
+                "ArrowFunctionExpression": false,
+                "FunctionExpression": false
+            }
+        }]
     }
 }

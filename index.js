@@ -1,6 +1,6 @@
 'use strict';
 
-const logger = require('./src/utils/logger');
+const { logger } = require('./src/utils');
 const { db, initializeDB } = require('./src/db');
 const { APP_PORT } = require('./config');
 
